@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Погода</title>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+
+  <body>
+    <section class="section section-here">
+      <div class="section-header">
+        <h2 class="section-title">Погода здесь</h2>
+        <button class="update-location">Обновить геолокацию</button>
+        <button class="update-location-small">
+          <img src="./update.png" alt="Обновить">
+        </button>
+      </div>
+
+      <div class="section-content">
+        <div class="weather weather-main">
+          <div class="weather-header">
+            <h3 class="weather-city">Saint Petersburg</h3>
+          </div>
+
+          <div class="weather-here">
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-temperature">8°C</div>
+          </div>  
+        </div>
+
+        <div class="weather">
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section class="section section-favorites">
+      <div class="section-header">
+        <h2 class="section-title">Избранное</h2>
+        <form class="add-city">
+          <input type="text" placeholder="Добавить новый город">
+          <button>+</button>
+        </form>
+      </div>
+
+      <div class="section-content">
+        <div class="weather">
+          <div class="weather-header">
+            <h3 class="weather-city">Moscow</h3>
+            <div class="weather-temperature">5°C</div>
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-remove">x</div>
+          </div>
+
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="weather">
+          <div class="weather-header">
+            <h3 class="weather-city">Moscow</h3>
+            <div class="weather-temperature">5°C</div>
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-remove">x</div>
+          </div>
+
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="weather">
+          <div class="weather-header">
+            <h3 class="weather-city">Moscow</h3>
+            <div class="weather-temperature">5°C</div>
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-remove">x</div>
+          </div>
+
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="weather">
+          <div class="weather-header">
+            <h3 class="weather-city">Moscow</h3>
+            <div class="weather-temperature">5°C</div>
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-remove">x</div>
+          </div>
+
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="weather">
+          <div class="weather-header">
+            <h3 class="weather-city">Moscow</h3>
+            <div class="weather-temperature">5°C</div>
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-remove">x</div>
+          </div>
+
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="weather">
+          <div class="weather-header">
+            <h3 class="weather-city">Moscow</h3>
+            <div class="weather-temperature">5°C</div>
+            <img class="weather-icon" src="./weather.png" alt="Погода">
+            <div class="weather-remove">x</div>
+          </div>
+
+          <ul class="weather-list">
+            <li>
+              <div class="title">Ветер</div>
+              <div class="value">Moderate breeze, 6.0 m/s, North-northwest</div>
+            </li>
+            
+            <li>
+              <div class="title">Облачность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Давление</div>
+              <div class="value">1013 hpa</div>
+            </li>
+            
+            <li>
+              <div class="title">Влажность</div>
+              <div class="value">Broken clouds</div>
+            </li>
+            
+            <li>
+              <div class="title">Координаты</div>
+              <div class="value">[59.88, 30.42]</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

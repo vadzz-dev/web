@@ -1,0 +1,158 @@
+html {  
+  font-size: 16px;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  color: #738287;
+}
+
+.section {
+  padding: 1rem 0;
+}
+
+.section .section-header {
+  position: relative;
+  margin: 0 3rem;
+  display: flex;
+}
+
+.section .section-title {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 200;
+}
+
+.section-here .update-location {
+  position: absolute;
+  align-self: center;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: .2rem;
+  border: none;
+  background-color: #c9d2d7;
+  color: #8e999f;
+  padding: 1rem 2.5rem;
+  font-weight: 700;
+  outline: none;
+}
+
+.section-here .update-location-small {
+  display: none;
+}
+
+.section-favorites .add-city {
+  position: absolute;
+  align-self: center;
+  right: 0;
+}
+
+.add-city input {
+  border: none;
+  background-color: #f1f1f1;
+  border-radius: .2rem;
+  padding: .7rem 1rem;
+  outline: none;
+}
+
+.add-city button {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: #718287;
+  color: white;
+  text-align: center;
+  line-height: 2rem;
+  margin-left: .5rem;
+}
+
+.section-content {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.weather {
+  width: 50%;
+  font-family: sans-serif;
+  padding: 1rem 3rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-header {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.weather-city {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.weather-temperature {
+  font-size: 2.5rem;
+  margin-left: 3rem;
+}
+
+.weather-icon {
+  height: 3rem;
+  margin-left: 3rem;
+}
+
+.weather-remove {
+  position: absolute;
+  right: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #718287;
+  color: white;
+  text-align: center;
+  line-height: 2rem;
+}
+
+.weather-list {
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.weather-list > li {
+  width: 100%;
+  background-color: #738287;
+  color: white;
+  margin: .5rem 0;
+  display: flex;
+  justify-content: space-between;
+  padding: .7rem;
+  box-sizing: border-box;
+}
+
+.weather-list > li .title {
+  font-weight: 700;
+}
+
+.weather-here {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1;
+}
+
+.weather-here .weather-icon {
+  margin: 0;
+  height: 10rem;
+}
+
+.weather-here .weather-temperature {
+  font-size: 8rem;
+}
