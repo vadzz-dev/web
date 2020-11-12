@@ -1,4 +1,4 @@
-const API_KEY = '305510256a262c0c312bf44cf226eecf'
+const API_URL = 'https://shrouded-beach-77512.herokuapp.com/weather'
 
 let currentCity
 
@@ -9,17 +9,17 @@ function getCurrentLocation() {
 }
 
 async function getWeatherForCityName(name) {
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&q=${name}&appid=${API_KEY}`)
+  const res = await fetch(`${API_URL}?lang=ru&units=metric&q=${name}`)
   return res.json()
 }
 
 async function getWeatherForCityID(id) {
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&id=${id}&appid=${API_KEY}`)
+  const res = await fetch(`${API_URL}?lang=ru&units=metric&id=${id}`)
   return res.json()
 }
 
 async function getWeatherForCoords(lat, lon) {
-  const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=ru&units=metric&lat=${lat}&lon=${lon}&appid=${API_KEY}`)
+  const res = await fetch(`${API_URL}?lang=ru&units=metric&lat=${lat}&lon=${lon}`)
   return res.json()
 }
 
