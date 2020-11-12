@@ -46,9 +46,13 @@ function removeCity(id) {
   
   favorites = favorites.filter(el => el !== id)
 
-  const userId = localStorage.getItem('user_id')
-  if (userId) {
-    fetch(`${API_URL}/favorites/remove?user=${userId}&city=${id}`)
+  try {
+    const userId = localStorage.getItem('user_id')
+    if (userId) {
+      fetch(`${API_URL}/favorites/remove?user=${userId}&city=${id}`)
+    }
+  } catch (e) {
+    alert(e)
   }
 }
 
