@@ -1,4 +1,4 @@
-const API_URL = 'https://shrouded-beach-77512.herokuapp.com/weather'
+const API_URL = 'https://shrouded-beach-77512.herokuapp.com'
 
 let currentCity
 
@@ -9,17 +9,17 @@ function getCurrentLocation() {
 }
 
 async function getWeatherForCityName(name) {
-  const res = await fetch(`${API_URL}?lang=ru&units=metric&q=${name}`)
+  const res = await fetch(`${API_URL}/weather/city?q=${name}`)
   return res.json()
 }
 
 async function getWeatherForCityID(id) {
-  const res = await fetch(`${API_URL}?lang=ru&units=metric&id=${id}`)
+  const res = await fetch(`${API_URL}/weather/id?id=${id}`)
   return res.json()
 }
 
 async function getWeatherForCoords(lat, lon) {
-  const res = await fetch(`${API_URL}?lang=ru&units=metric&lat=${lat}&lon=${lon}`)
+  const res = await fetch(`${API_URL}/weather/coords?lat=${lat}&lon=${lon}`)
   return res.json()
 }
 
@@ -44,10 +44,11 @@ function removeCity(id) {
     favoritesEl.removeChild(city)
   }
   
-  const idx = favorites.indexOf(id)
-  if (idx !== -1) {
-    favorites.splice(idx, 1)
-    localStorage.setItem('favorites', JSON.stringify(favorites))
+  favorites = favorites.filter(el => el !== id)
+
+  const userId = localStorage.getItem('user_id')
+  if (userId) {
+    fetch(`${API_URL}/favorites/remove?user=${userId}&city=${id}`)
   }
 }
 
@@ -74,7 +75,19 @@ async function addCity(name) {
 
       favoritesEl.appendChild(city)
       favorites.push(weather.id)
-      localStorage.setItem('favorites', JSON.stringify(favorites))
+
+      try {
+        let userId = localStorage.getItem('user_id')
+        if (!userId) {
+          const res = await fetch(`${API_URL}/register`)
+          userId = (await res.json()).id
+          localStorage.setItem('user_id', userId)
+        }
+
+        fetch(`${API_URL}/favorites/add?user=${userId}&city=${weather.id}`)
+      } catch (e) {
+        alert(e)
+      }
     }
   } catch (e) {
     console.error(e)
@@ -134,9 +147,14 @@ window.addEventListener('load', async () => {
       addCity(e.target.elements['city'].value)
     })
   
+  updateWeatherHere()
+
   try {
-    favorites = JSON.parse(localStorage.getItem('favorites'))
-    console.log(favorites)
+    const userId = localStorage.getItem('user_id')
+    if (userId) {
+      const res = await fetch(`${API_URL}/favorites/get?user=${userId}`)
+      favorites = await res.json()
+    }
   } catch (e) {
     console.error(e)
   }
@@ -144,8 +162,6 @@ window.addEventListener('load', async () => {
   if (!Array.isArray(favorites)) {
     favorites = []
   }
-
-  updateWeatherHere()
 
   favorites.forEach(id => loadCity(id))
 })
