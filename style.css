@@ -87,6 +87,7 @@ body {
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  padding: 0;
 }
 
 .section .loader {
@@ -122,6 +123,7 @@ body {
 .weather-city {
   margin: 0;
   font-size: 2rem;
+  max-width: 50%;
 }
 
 .weather-temperature {
@@ -186,7 +188,7 @@ body {
   font-size: 7rem;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 768px) {
   html {
     font-size: 12px;
   }
@@ -207,5 +209,22 @@ body {
   
   .section-here .update-location.small {
     display: block;
+  }
+
+  .weather-temperature {
+    font-size: 2rem;
+    margin-left: 1rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  html {
+    font-size: 11px;
+  }
+
+  .weather-icon {
+    height: 4rem;
+    margin: -1rem;
+    margin-left: 0;
   }
 }
