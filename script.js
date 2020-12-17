@@ -49,7 +49,16 @@ function removeCity(id) {
   try {
     const userId = localStorage.getItem('user_id')
     if (userId) {
-      fetch(`${API_URL}/favorites/remove?user=${userId}&city=${id}`)
+      fetch(`${API_URL}/favorites`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: userId,
+          city: id
+        })
+      })
     }
   } catch (e) {
     alert(e)
@@ -88,7 +97,16 @@ async function addCity(name) {
           localStorage.setItem('user_id', userId)
         }
 
-        fetch(`${API_URL}/favorites/add?user=${userId}&city=${weather.id}`)
+        fetch(`${API_URL}/favorites`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user: userId,
+            city: weather.id
+          })
+        })
       } catch (e) {
         alert(e)
       }
@@ -156,7 +174,7 @@ window.addEventListener('load', async () => {
   try {
     const userId = localStorage.getItem('user_id')
     if (userId) {
-      const res = await fetch(`${API_URL}/favorites/get?user=${userId}`)
+      const res = await fetch(`${API_URL}/favorites?user=${userId}`)
       favorites = await res.json()
     }
   } catch (e) {
