@@ -146,7 +146,9 @@ body {
   background-color: #718287;
   color: white;
   text-align: center;
-  line-height: 2rem;
+  line-height: 1.8rem;
+  border: none;
+  outline: none;
 }
 
 .weather-list {

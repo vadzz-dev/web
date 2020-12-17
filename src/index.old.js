@@ -1,40 +1,4 @@
-const API_URL = 'https://shrouded-beach-77512.herokuapp.com'
-
 let currentCity
-
-function getCurrentLocation() {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition((location) => resolve(location.coords), reject)
-  })
-}
-
-async function getWeatherForCityName(name) {
-  const res = await fetch(`${API_URL}/weather/city?q=${name}`)
-  return res.json()
-}
-
-async function getWeatherForCityID(id) {
-  const res = await fetch(`${API_URL}/weather/id?id=${id}`)
-  return res.json()
-}
-
-async function getWeatherForCoords(lat, lon) {
-  const res = await fetch(`${API_URL}/weather/coords?lat=${lat}&lon=${lon}`)
-  return res.json()
-}
-
-function setWeather(el, weather) {
-  el.querySelector('.weather-city').textContent = weather.name
-  el.querySelector('.weather-icon').src = `https://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`
-  el.querySelector('.weather-temperature .value').textContent = Math.round(weather.main.temp)
-  el.querySelector('.weather-list .wind-speed').textContent = weather.wind.speed
-  el.querySelector('.weather-list .wind-direction').textContent = weather.wind.deg
-  el.querySelector('.weather-list .cloudness').textContent = weather.clouds.all
-  el.querySelector('.weather-list .pressure').textContent = weather.main.pressure
-  el.querySelector('.weather-list .humidity').textContent = weather.main.humidity
-  el.querySelector('.weather-list .coords-lat').textContent = weather.coord.lat
-  el.querySelector('.weather-list .coords-lon').textContent = weather.coord.lon
-}
 
 function removeCity(id) {
   const favoritesEl = document.getElementById('favorites')
@@ -49,16 +13,7 @@ function removeCity(id) {
   try {
     const userId = localStorage.getItem('user_id')
     if (userId) {
-      fetch(`${API_URL}/favorites`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          user: userId,
-          city: id
-        })
-      })
+      await apiRemoveCity(userId, id)
     }
   } catch (e) {
     alert(e)
@@ -89,10 +44,6 @@ async function addCity(name) {
       favoritesEl.removeChild(city)
       return
     }
-
-    city.setAttribute('data-city-id', weather.id)
-    city.querySelector('.weather-remove')
-      .addEventListener('click', e => removeCity(weather.id))
 
     setWeather(city, weather)
 
@@ -132,35 +83,9 @@ async function loadCity(id) {
 
   const el = city.children[0]
 
-  el.setAttribute('data-city-id', weather.id)
-  el.querySelector('.weather-remove')
-    .addEventListener('click', e => removeCity(weather.id))
-
   setWeather(el, weather)
 
   favoritesEl.appendChild(city)
-}
-
-async function updateWeatherHere() {
-  const weatherHere = document.getElementById('weatherHere')
-  weatherHere.classList.add('loading')
-
-  let weather
-  if (currentCity !== undefined) {
-    weather = await getWeatherForCityID(currentCity)
-  } else {
-    try {
-      const coords = await getCurrentLocation()
-      weather = await getWeatherForCoords(coords.latitude, coords.longitude)
-    } catch(e) {
-      weather = await getWeatherForCityName('Moscow')
-    }
-  }
-
-  currentCity = weather.id
-  setWeather(weatherHere, weather)
-
-  weatherHere.classList.remove('loading')
 }
 
 window.addEventListener('load', async () => {
