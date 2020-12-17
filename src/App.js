@@ -59,9 +59,16 @@ export class App {
       return null
     }
 
-    const weather = await this.api.getWeatherForCityName(name)
-    if (weather.id === undefined) {
-      alert('Город не найден')
+    try {
+      const weather = await this.api.getWeatherForCityName(name)
+      if (weather.id === undefined) {
+        alert('Город не найден')
+        return null
+      }
+    } catch (e) {
+      console.error(e)
+      alert(e.message)
+      
       return null
     }
 
@@ -79,6 +86,7 @@ export class App {
       return null
     }
 
+    this.favorites.push(weather.id)
     return weather
   }
 
