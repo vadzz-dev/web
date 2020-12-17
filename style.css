@@ -188,7 +188,18 @@ body {
   font-size: 7rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .weather-temperature {
+    margin-left: 1rem;
+  }
+
+  .weather-icon {
+    margin: -.5rem;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 1023px) {
   html {
     font-size: 12px;
   }
@@ -213,18 +224,11 @@ body {
 
   .weather-temperature {
     font-size: 2rem;
-    margin-left: 1rem;
   }
 }
 
 @media screen and (max-width: 375px) {
   html {
     font-size: 11px;
-  }
-
-  .weather-icon {
-    height: 4rem;
-    margin: -1rem;
-    margin-left: 0;
   }
 }
