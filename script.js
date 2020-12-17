@@ -70,50 +70,56 @@ async function addCity(name) {
     return
   }
 
+  const favoritesEl = document.getElementById('favorites')
+  const template = document.getElementById('favoriteCity')
+
+  favoritesEl.appendChild(document.importNode(template.content, true))
+  const city = favoritesEl.lastElementChild
+
   try {
     const weather = await getWeatherForCityName(name)
-    if (!favorites.includes(weather.id)) {
-      const favoritesEl = document.getElementById('favorites')
-      const template = document.getElementById('favoriteCity')
-
-      const city = document.importNode(template.content, true)
-
-      const el = city.children[0]
-
-      el.setAttribute('data-city-id', weather.id)
-      el.querySelector('.weather-remove')
-        .addEventListener('click', e => removeCity(weather.id))
-
-      setWeather(el, weather)
-
-      favoritesEl.appendChild(city)
-      favorites.push(weather.id)
-
-      try {
-        let userId = localStorage.getItem('user_id')
-        if (!userId) {
-          const res = await fetch(`${API_URL}/register`)
-          userId = (await res.json()).id
-          localStorage.setItem('user_id', userId)
-        }
-
-        fetch(`${API_URL}/favorites`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            user: userId,
-            city: weather.id
-          })
-        })
-      } catch (e) {
-        alert(e)
-      }
+    if (weather.id === undefined) {
+      alert('Город не найден')
+      favoritesEl.removeChild(city)
+      return
     }
+
+    if (favorites.includes(weather.id)) {
+      alert('Город уже добавлен')
+      favoritesEl.removeChild(city)
+      return
+    }
+
+    city.setAttribute('data-city-id', weather.id)
+    city.querySelector('.weather-remove')
+      .addEventListener('click', e => removeCity(weather.id))
+
+    setWeather(city, weather)
+
+    favorites.push(weather.id)
+
+    let userId = localStorage.getItem('user_id')
+    if (!userId) {
+      const res = await fetch(`${API_URL}/register`)
+      userId = (await res.json()).id
+      localStorage.setItem('user_id', userId)
+    }
+
+    await fetch(`${API_URL}/favorites`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: userId,
+        city: weather.id
+      })
+    })
   } catch (e) {
+    favoritesEl.removeChild(city)
+    
     console.error(e)
-    alert(`Не удалось добваить город "${name}"`)
+    alert(`Не удалось добавить город "${name}"`)
   }
 }
 
